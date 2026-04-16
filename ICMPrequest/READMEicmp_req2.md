@@ -19,6 +19,7 @@ This Python script is a specialized network diagnostic tool that performs Deep P
 ---
 
 # 🧪 Use Cases for Cybersecurity Students
+
 **Header Analysis:** Learn how flags like Don't Fragment (DF) behave in a real exchange.
 
 **OS Fingerprinting:** Observe how different Operating Systems set default TTL values or IP ID patterns in their responses.
@@ -32,16 +33,15 @@ This Python script is a specialized network diagnostic tool that performs Deep P
 # 🚀 How to Run
 **Install Scapy:**
 
-Bash
-pip install scapy
+`bash pip install scapy`
 
 **Configure:** 
+
 Update SRC_IP, DST_IP, and IFACE in the script.
 
 **Execute with Root Privileges:**
 
-Bash
-sudo python3 ping_spoofed_explain.py
+`bash sudo python3 ping_spoofed_explain.py`
 
 ---
 
