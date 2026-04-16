@@ -30,21 +30,23 @@ maintain an accurate command prompt.
 - *Prerequisites*
 
 Python 3.x installed on both machines.
+
 The machines must be on the same network or have a reachable routing path.
 
 - *Execution Steps*
 
 Configure the Client:
-Open main.py and set the SERVER_IP variable to the IP address of your listener machine.
+Open `main.py` and set the SERVER_IP variable to the IP address of your listener machine.
 
 - *Python*
 
-SERVER_IP = '192.168.1.XX' # Replace with your IP
-Start the Listener:
+`SERVER_IP = '192.168.1.XX'` 
+
+- *Start the Listener:*
+
 On the attacker machine, run:
 
-Bash
-python3 listener.py
+`bash python3 listener.py`
 
 The server will start listening on port 8080.
 
@@ -52,8 +54,7 @@ The server will start listening on port 8080.
 
 On the target machine, run:
 
-Bash
-python3 main.py
+`bash python3 main.py`
 
 - *Interact:*
 
