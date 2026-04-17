@@ -48,12 +48,12 @@ Python 3.x
 
 *Scapy library installed:*
 
-`bash pip install scapy`
+`pip install scapy`
 
 *Execution:*
 Since this script does not interact with the network interface, it does not require root/sudo privileges.
 
-`bash python3 ip_inspector.py`
+`python3 ip_inspector.py`
 
 ---
 
