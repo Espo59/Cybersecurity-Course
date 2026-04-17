@@ -17,12 +17,12 @@ This project provides a robust implementation of a secure Client-Server architec
 ### 1. Prerequisites
 Ensure you have the `cryptography` library installed (required by the generator script):
 
-`bash pip install cryptography`
+`pip install cryptography`
 
 ### 2. Generate Certificates
 Before running the server or client, you must create the security credentials. Run the generator script:
 
-`bash python3 server_client_cert_gen.py gen_certs`
+`python3 server_client_cert_gen.py gen_certs`
 
 This will generate the following files in your directory:
 
@@ -36,13 +36,13 @@ This will generate the following files in your directory:
 
 Start the server first. It will wait for incoming secure connections on port 4433.
 
-`bash python3 secure_socket_server.py`
+`python3 secure_socket_server.py`
 
 ### 4. Run the Client
 
 In a new terminal, start the client. You can specify the server IP (default is 127.0.0.1).
 
-`bash python3 secure_socket_client.py --host 127.0.0.1`
+`python3 secure_socket_client.py --host 127.0.0.1`
 
 ---
 
