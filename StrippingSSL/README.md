@@ -46,24 +46,29 @@ The practical application of Python's subprocess module for security tool orches
 ---
 
 # 🚀 Usage
-**Prerequisites:**
+* ### *Prerequisites:*
 Linux OS (Kali Linux or Parrot OS highly recommended).
 
 Bettercap v2.x and the hstshijack caplet installed.
 
 Root Privileges (Required for network socket manipulation and packet injection).
 
-**Installation:**
-Bash
-*Update Bettercap and install the necessary caplets*
-sudo bettercap -eval "caplets.update; q"
+* ### *Installation:*
 
-**Execution**
+*Update Bettercap and install the necessary caplets*
+```Bash
+
+sudo bettercap -eval "caplets.update; q"
+```
+
+* ### *Execution*
 Configure the TARGET_IP and INTERFACE inside the script.
 
-**Run the automator:**
-Bash
+* ### *Run the automator:*
+
+```Bash
 sudo python3 mitm_strip.py
+```
 
 ---
 
