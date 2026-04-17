@@ -46,7 +46,7 @@ Open `main.py` and set the SERVER_IP variable to the IP address of your listener
 
 On the attacker machine, run:
 
-`bash python3 listener.py`
+`python3 listener.py`
 
 The server will start listening on port 8080.
 
@@ -54,7 +54,7 @@ The server will start listening on port 8080.
 
 On the target machine, run:
 
-`bash python3 main.py`
+`python3 main.py`
 
 - *Interact:*
 
