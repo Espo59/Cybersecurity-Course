@@ -31,7 +31,7 @@ uploading scripts to multiple peers.
 
 *Command:*
 
- `bash python p2p_victim.py 8082 (e.g., 8082)`
+ `python p2p_victim.py 8082 (e.g., 8082)`
 
 **Setup on Kali Linux / Lubuntu (Controller)**
 
@@ -39,9 +39,9 @@ uploading scripts to multiple peers.
 
 *Command:*
 
-`bash sudo python3 p2p_node.py 8080 (for Kalilinux)`
+`sudo python3 p2p_node.py 8080 (for Kalilinux)`
 
-`bash sudo python3 p2p_node.py 8081 (for Lubuntu)`
+`sudo python3 p2p_node.py 8081 (for Lubuntu)`
 
 ---
 
@@ -53,13 +53,13 @@ The Controller (Kali) must initiate the connection to the Victim (Metasploitable
 
 Inside the Kali terminal (where p2p_node.py is running), use the following command:
 
-`bash: connect (victim-ip) (victim-port)`
+`connect (victim-ip) (victim-port)`
 
 `connect 192.168.1.15 8082 (exemple of Metasploite ip and port)`
 
 Inside Lubuntu terminal, use the following command:
 
-`bash: connect (Kali-ip) (Kali-port)`
+`connect (Kali-ip) (Kali-port)`
 
 ---
 
