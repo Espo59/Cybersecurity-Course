@@ -1,91 +1,154 @@
-# 🔗 P2P Remote Management & Command Execution Toolkit
-This project consists of a decentralized Peer-to-Peer (P2P) infrastructure designed to explore network communication, remote command execution, 
-and file synchronization between modern Linux systems (Kali/Ubuntu) and legacy environments (Metasploitable 2).
+# 🔗 P2P Distributed Network Management & Communication Toolkit
+
+This project implements a **peer-to-peer (P2P) distributed network simulation** designed to study network communication, remote administration concepts, and multi-node coordination between heterogeneous systems.
+
+It includes interoperability between modern Linux environments (Kali / Ubuntu) and legacy systems (Metasploitable 2).
 
 ---
 
-# ⚠️ Educational Purpose & Legal Disclaimer
-This toolkit is for purely educational and authorized security testing purposes only.
-- **Ethical Use:** Never deploy these scripts on networks or devices without explicit written permission.
-- **Security Risk:** The "Victim" node intentionally allows remote code execution.
-Do not run it on public-facing servers or untrusted networks.
+## ⚠️ Educational Purpose & Legal Disclaimer
+
+This project is intended strictly for **educational and authorized security testing environments**.
+
+* Do not deploy on production systems or unauthorized networks
+* One component is intentionally designed to execute remote commands in a controlled lab setting
+* Use only in isolated or permissioned environments
 
 ---
 
-# 🏗️ Architecture Overview
-The system is composed of two primary components:
+## 🏗️ Architecture Overview
 
-P2P Controller (p2p_node.py): 
- 
- - A modern Python 3.x implementation for Kali Linux/Ubuntu. It acts as both a chat node and a remote administrator, capable of broadcasting commands and
-uploading scripts to multiple peers.
+The system consists of two main components:
 
- - P2P Victim (p2p_victim.py): A legacy Python 2.7 implementation optimized for Metasploitable 2. It remains in a passive listening state, executing commands received from authorized controllers.
+### 🖥️ P2P Controller (`p2p_node.py`)
 
----
+A Python 3.x application running on modern Linux systems (Kali / Ubuntu).
 
-# 🚀 Getting Started
-**Setup on Metasploitable 2 (Victim)**
+Capabilities:
 
-- Since Metasploitable 2 uses an older environment, run the script using Python 2. This node will wait for an incoming connection from the Controller.
-
-*Command:*
-
- `python p2p_victim.py 8082 (e.g., 8082)`
-
-**Setup on Kali Linux / Lubuntu (Controller)**
-
-- The controller requires Python 3.8+ and should be started on a listening port to allow other nodes to connect back if needed.
-
-*Command:*
-
-`sudo python3 p2p_node.py 8080 (for Kalilinux)`
-
-`sudo python3 p2p_node.py 8081 (for Lubuntu)`
+* Acts as a network node and control interface
+* Supports multi-peer communication
+* Enables command broadcasting across connected nodes
+* Supports script transfer and execution in lab environments
+* Provides interactive CLI for node management
 
 ---
 
-# 🕹️ Establishing the Connection
+### 🧾 P2P Worker Node (`p2p_victim.py`)
 
-Once both nodes are running, you must link them. 
+A Python 2.7-compatible node designed for legacy environments (e.g., Metasploitable 2).
 
-The Controller (Kali) must initiate the connection to the Victim (Metasploitable).
+Capabilities:
 
-Inside the Kali terminal (where p2p_node.py is running), use the following command:
-
-`connect (victim-ip) (victim-port)`
-
-`connect 192.168.1.15 8082 (exemple of Metasploite ip and port)`
-
-Inside Lubuntu terminal, use the following command:
-
-`connect (Kali-ip) (Kali-port)`
+* Passive listening mode for incoming controller connections
+* Executes received commands in a controlled environment
+* Maintains persistent connection with the controller node
 
 ---
 
-# 📋 Available Controller Commands
-Once connected, you can manage the victim(s) using the interactive CLI:
-Command-Syntax
+## 🚀 Getting Started
 
-List- list
+### 🧪 Setup on Metasploitable 2 (Worker Node)
 
-Execute - exec (all) 
+Run using Python 2:
 
-Status - status (all)
+```bash id="p2q8mn"
+python p2p_victim.py 8082
+```
 
-Upload - send_script (all)
-
-Broadcast - send (message)
-
-Exit - exit
+The node will start listening for incoming connections.
 
 ---
 
-# 🧪 Technical Features
-**Legacy Compatibility:** p2p_victim.py uses the commands module for full compatibility with Python 2.7 environments.
+### 🖥️ Setup on Kali Linux / Ubuntu (Controller)
 
-**Threaded Handling:** Every connection is managed in a separate thread, allowing the controller to manage multiple victims simultaneously.
+Run the controller on Python 3:
 
-**Binary Handling:** The controller can push binary data (scripts) to a /tmp/ directory on the remote target and automatically set execution permissions
-(chmod +x).
-**Robust Parsing:** Improved EXEC parsing to prevent crashes on malformed network packets.
+```bash id="x7c3vz"
+sudo python3 p2p_node.py 8080
+```
+
+Optional secondary node (e.g., Lubuntu):
+
+```bash id="m4n9ql"
+sudo python3 p2p_node.py 8081
+```
+
+---
+
+## 🔌 Establishing Connections
+
+Once both nodes are running:
+
+### From Controller → Worker
+
+```bash id="k8v2xp"
+connect 192.168.1.15 8082
+```
+
+### From Worker → Controller (reverse connection)
+
+```bash id="r3m7zn"
+connect <kali-ip> <kali-port>
+```
+
+---
+
+## 📋 Available CLI Commands
+
+Once connected, the controller supports the following commands:
+
+* `list` → Show connected nodes
+* `exec` → Execute command on all nodes
+* `status` → Retrieve node status
+* `send_script` → Transfer scripts to nodes
+* `send` → Broadcast message
+* `exit` → Close connection
+
+---
+
+## 🧪 Technical Features
+
+* **Peer-to-Peer Architecture**
+  Decentralized communication model between nodes
+
+* **Multi-Threaded Networking**
+  Each connection is handled in an independent thread
+
+* **Legacy Compatibility Layer**
+  Supports Python 2.7 environments for older systems
+
+* **Remote Script Deployment (Lab Use)**
+  Enables controlled transfer and execution of scripts in testing environments
+
+* **Robust Packet Handling**
+  Improves stability against malformed or incomplete network messages
+
+---
+
+## 📖 Learning Objectives
+
+This project demonstrates:
+
+* Fundamentals of P2P network architecture
+* Distributed system communication patterns
+* Cross-version Python interoperability (2.7 vs 3.x)
+* Multi-threaded socket programming
+* Remote administration concepts in controlled environments
+
+---
+
+## 🛡️ Security Notice
+
+This system is intended for **authorized laboratory environments only**.
+
+* Unauthorized use on external networks is strictly prohibited
+* Always isolate test environments (VMs or virtual networks)
+* Ensure explicit permission before any testing activity
+
+---
+
+## 📄 License
+
+This project is released under the MIT License.
+
