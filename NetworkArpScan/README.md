@@ -1,65 +1,115 @@
-# Network Discovery & ARP Scanner (Scapy-based)
-This Python script is a high-performance network reconnaissance tool designed to discover active hosts within a Local Area Network (LAN). It utilizes the Address Resolution Protocol (ARP) to map IP addresses to their respective hardware (MAC) addresses.
+# 🌐 Network Discovery & ARP Scanner (Scapy-based)
+
+A high-performance network reconnaissance tool designed to discover active hosts within a Local Area Network (LAN) using the **Address Resolution Protocol (ARP)**.
+
+This project demonstrates how Layer 2 communication can be used for reliable host discovery, even in environments where ICMP (ping) is restricted.
 
 ---
 
-# 🔍 How It Works
-Unlike standard scanners that rely on ICMP (Ping), which is often blocked by modern firewalls and host-based security software, this tool operates at Layer 2 (Data Link Layer).
+## 🔍 How It Works
 
-- **Frame Construction:** The script crafts a custom Ethernet frame with a broadcast destination address (ff:ff:ff:ff:ff:ff).
+Unlike traditional ICMP-based scanners, this tool operates at the **Data Link Layer (Layer 2)** using ARP requests.
 
-- **ARP Encapsulation:** It embeds an ARP "who-has" request (Opcode 1) inside the Ethernet frame for every IP in the target range.
+### 📦 Packet Construction
 
-- **Broadcast Emission:** The frames are sent across the network segment.
-
-- **Response Parsing:** It captures ARP "is-at" replies (Opcode 2). Since ARP is essential for local communication, active hosts will respond with their MAC address even if they are configured to ignore pings.
-
----
-
-# 🛠 Features
-
-**CIDR Support:** Scan entire subnets (e.g., 192.168.1.0/24) or specific IP ranges.
-
-**Interface Selection:** Choose the specific network interface (eth0, wlan0, etc.) for the scan.
-
-**Custom Timeouts:** Adjustable wait times for responses to balance speed and accuracy.
-
-**Dynamic Interface Validation:** Automatically checks if the specified network interface exists on the host system.
-
-**Formatted Output:** Clear mapping of IP Address -> MAC Address.
+* Builds a custom **Ethernet frame**
+* Uses broadcast MAC address: `ff:ff:ff:ff:ff:ff`
+* Encapsulates an ARP request (`who-has`, opcode 1)
 
 ---
 
-# 🧪 Educational Objectives
-This project was developed to explore:
+### 📡 Network Discovery Process
 
-The mechanics of Layer 2 broadcasting.
-
-The role of the ARP Cache in local network routing.
-
-Using Scapy for advanced packet manipulation and raw socket communication.
+1. Sends ARP broadcast requests to all IPs in the target range
+2. Hosts that are active respond with ARP replies (`is-at`, opcode 2)
+3. The script captures and parses responses
+4. Maps IP addresses to MAC addresses
 
 ---
 
-# 🚀 Usage
-**Prerequisites**
+## 🛠 Features
 
-Linux OS (Kali Linux, Parrot, or Ubuntu recommended).
+* **CIDR Range Scanning**
+  Supports full subnet scanning (e.g., `192.168.1.0/24`)
 
-Python 3.x and Scapy library.
+* **Interface Selection**
+  Allows scanning through specific interfaces (`eth0`, `wlan0`, etc.)
 
-Root Privileges (Required for crafting raw Layer 2 frames).
+* **Custom Timeout Control**
+  Adjust response waiting time for speed vs accuracy
 
-**Installation**
+* **Interface Validation**
+  Automatically checks if the selected network interface exists
 
-`pip install scapy`
-
-**Execution**
-
-`sudo python3 arp_sweep.py -n 192.168.1.0/24 -i eth0`
+* **Clean Output Formatting**
+  Displays results as:
+  `IP Address → MAC Address`
 
 ---
 
-# ⚠️ Disclaimer
-FOR EDUCATIONAL AND AUTHORIZED TESTING ONLY.
-This tool is intended for use in controlled laboratory environments. Unauthorized scanning of networks is unethical and may be illegal. Always obtain explicit permission before performing any security assessment.
+## 🧪 Educational Objectives
+
+This project helps understand:
+
+* Layer 2 broadcasting mechanisms
+* How ARP is used for local network communication
+* Role of the ARP cache in LAN environments
+* Packet crafting using Scapy
+* Differences between ICMP-based and ARP-based discovery
+
+---
+
+## 🚀 Requirements
+
+* Linux (Kali Linux, Parrot OS, or Ubuntu recommended)
+* Python 3.x
+* Scapy
+
+Install dependency:
+
+```bash id="n7k2vp"
+pip install scapy
+```
+
+---
+
+## ▶️ Usage
+
+### Run the Scanner
+
+```bash id="c3m8xn"
+sudo python3 arp_sweep.py -n 192.168.1.0/24 -i eth0
+```
+
+### Parameters
+
+* `-n` → Target network range (CIDR notation)
+* `-i` → Network interface
+
+---
+
+## 📖 Learning Outcomes
+
+This tool demonstrates:
+
+* Practical use of ARP in LAN environments
+* Ethernet frame structure and Layer 2 communication
+* Network reconnaissance techniques
+* Scapy-based packet manipulation
+* Host discovery without ICMP dependency
+
+---
+
+## ⚠️ Security & Ethical Notice
+
+This tool is intended strictly for educational and authorized testing purposes.
+
+* Do not scan networks without explicit permission
+* Unauthorized reconnaissance may be illegal
+* Always use within controlled lab environments
+
+---
+
+## 📄 License
+
+This project is released under the MIT License.
