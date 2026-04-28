@@ -1,66 +1,117 @@
-# Python MAC Address Changer
-A lightweight, robust Python utility designed for Linux systems to modify the Media Access Control (MAC) address of network interfaces using the iproute2 suite.
+# 🖧 Python MAC Address Changer
+
+A lightweight Linux utility designed to modify the **Media Access Control (MAC) address** of a network interface using the `iproute2` suite.
+
+This tool is intended for educational purposes in network configuration and security testing environments.
 
 ---
 
-# 🌟 Features
-- Automatic Interface Management: Automatically handles bringing the interface down and up to apply changes.
+## 🌟 Features
 
-- Validation: Built-in Regex validation to ensure the new MAC address follows the XX:XX:XX:XX:XX:XX format.
+* **Automatic Interface Management**
+  Safely brings network interfaces down and back up during MAC modification
 
-- Verification: Performs a post-execution check to confirm the system has successfully applied the new hardware address.
+* **Input Validation**
+  Ensures MAC address format compliance using regex validation (`XX:XX:XX:XX:XX:XX`)
 
-- Safety First: Includes comprehensive error handling for missing permissions (root), invalid interfaces, or missing system dependencies.
+* **Verification Step**
+  Confirms whether the MAC address change was successfully applied
 
----
+* **Robust Error Handling**
+  Handles:
 
-# 🚀 Installation & Requirements
-- Operating System: Linux (requires the ip command, usually part of the iproute2 package).
-
-- Privileges: Must be run with root/sudo privileges to modify hardware settings.
-
-- Python: Compatible with Python 3.6+.
-
-No external Python libraries are required (uses standard libraries: re, subprocess, sys).
+  * Missing root privileges
+  * Invalid network interfaces
+  * Missing system dependencies
 
 ---
 
-# 🛠 Usage
-- Clone the repository:
+## 🚀 Requirements
 
+* **Operating System:** Linux
+* **Dependency:** `iproute2` (`ip` command)
+* **Python:** 3.6+
+
+No external Python libraries required.
+
+---
+
+## 🛠️ Usage
+
+### 1. Clone the Repository
+
+```bash id="k8m3xp"
 git clone https://github.com/yourusername/mac-changer.git
 cd mac-changer
-
-- Configure the script:
-Open change_mac.py and edit the constants at the top:
-
-INTERFACE = "eth0"                 # Your target interface
-NEW_MAC   = "00:11:22:33:44:58"    # Your desired MAC
-
-- Run with sudo:
-
-`sudo python3 change_mac.py`
+```
 
 ---
 
-# 🔍 How it works
-The script follows a standard 4-step networking procedure:
+### 2. Configure the Script
 
-Scan: Retrieves and displays the current MAC address.
+Edit the following values in `change_mac.py`:
 
-Disable: Shuts down the target interface (ip link set <iface> down).
+```python id="p4n7vz"
+INTERFACE = "eth0"
+NEW_MAC = "00:11:22:33:44:58"
+```
 
-Modify: Changes the hardware address (ip link set <iface> address <mac>).
-
-Enable: Brings the interface back online (ip link set <iface> up).
-
----
-
-# ⚠️ Disclaimer
-Educational and Testing Purposes Only.
-Changing your MAC address can be used for privacy or network testing. However, ensure you comply with your local laws and network policies. The author is not responsible for any misuse or disruption of network services.
+* `INTERFACE` → Target network interface
+* `NEW_MAC` → Desired MAC address
 
 ---
 
-# 📜 License
-Distributed under the MIT License. See LICENSE for more information.
+### 3. Run the Tool
+
+```bash id="x2c9ql"
+sudo python3 change_mac.py
+```
+
+---
+
+## 🔍 How It Works
+
+The script performs a standard MAC address change workflow:
+
+1. **Scan**
+   Retrieves the current MAC address of the interface
+
+2. **Disable Interface**
+   Brings the interface down using `ip link set dev down`
+
+3. **Modify MAC Address**
+   Assigns a new hardware address
+
+4. **Re-enable Interface**
+   Restores network connectivity
+
+5. **Verify Change**
+   Confirms the updated MAC address
+
+---
+
+## 📖 Learning Objectives
+
+This project demonstrates:
+
+* Network interface configuration in Linux
+* Role of MAC addresses in Layer 2 communication
+* Use of `iproute2` utilities for system networking
+* Basic system automation with Python
+* Validation and error handling in system-level scripts
+
+---
+
+## ⚠️ Security & Ethical Notice
+
+This tool is intended strictly for educational and authorized testing purposes.
+
+* MAC address modification may be restricted by network policies
+* Unauthorized use on managed networks may violate rules or regulations
+* Always use in controlled or personal environments
+
+---
+
+## 📄 License
+
+This project is distributed under the MIT License.
