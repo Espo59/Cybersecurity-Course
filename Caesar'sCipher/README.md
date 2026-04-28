@@ -1,60 +1,122 @@
-# Caesar Cipher Pro
+# 🔐 Caesar Cipher Pro
+
 A high-performance Python implementation of the Caesar Cipher algorithm, optimized for large texts and multiple execution rounds.
-This tool supports an extended alphabet including digits, punctuation, and spaces, making it more versatile than traditional implementations.
+
+This version extends the traditional cipher by supporting a wider character set and applying mathematical optimizations to improve efficiency.
 
 ---
 
-# 🚀 Features
-- **Optimized Performance:** Uses a mathematical shortcut to calculate total shifts, reducing time complexity from $O(n \times rounds)$ to $O(n)$.
+## 🚀 Features
 
-- **Extended Alphabet:** Supports lowercase, uppercase (preserved), digits, and common punctuation
-( .,!?;:@).Multiple Modes: Options for manual text input or direct file processing.
+* **Optimized Performance**
+  Reduces time complexity from **O(n × rounds)** to **O(n)** using mathematical key aggregation
 
-- **Dictionary Lookup:** Utilizes $O(1)$ dictionary mapping forcharacter translation, ensuring lightning-fast execution even on long documents.
+* **Extended Alphabet Support**
+  Handles:
 
-- **Persistence:** Allows saving results directly to a text file.
+  * Lowercase and uppercase letters (case preserved)
+  * Digits
+  * Common punctuation (`.,!?;:@`)
+  * Spaces
 
----
+* **Multiple Input Modes**
 
-# 🛠 How It Works
+  * Manual text input
+  * File-based processing (`.txt`)
 
-- *The Optimization Logic*
+* **Fast Character Mapping**
+  Uses dictionary-based lookup (`O(1)`) for efficient character translation
 
-Unlike basic scripts that loop through the encryption process for every "round" requested, this version calculates the total key first:
-
-$$\text{Total Key} = \text{Base Key} \times \text{Rounds}$$
-
-This ensures that whether you run 1 round or 1,000,000 rounds, the processing time remains the same.
-
----
-
-# 📋 UsagePrerequisites
-Python 3.6+Running the ScriptClone the repository or download caesar_chiper.py.
-Run the script in your terminal:
-
-`python3 caesar_chiper.py`
-
-**Interactive Menu**
-
-- *Option 1 (Manual):* Type your message directly into the terminal.
-
-- *Option 2 (File):* Provide the path to a .txt file to encrypt/decrypt its entire content.
-
-- *Option 3 (Exit):* Close the program safely.
-
---- 
-
-# ⚙️ Configuration
-Setting - Description
-
-Key - The integer number of positions to shift in the alphabet.
-
-Rounds - How many times the shift should be applied (optimized mathematically).
-
-Mode - Choose between encrypt to secure text or decrypt to revert it.
+* **Output Persistence**
+  Option to save results directly to a file
 
 ---
 
-# ⚠️ Disclaimer
-This project is for educational purposes only. While the Caesar Cipher is a great way to learn about cryptography and programming logic,
-it is not secure against modern cryptanalysis and should not be used to protect sensitive or private data.
+## 🛠️ How It Works
+
+### Optimization Strategy
+
+Instead of applying the shift repeatedly for each round, the script calculates a single effective key:
+
+[
+\text{Total Key} = \text{Base Key} \times \text{Rounds}
+]
+
+This ensures consistent performance regardless of the number of rounds.
+
+---
+
+## 📋 Requirements
+
+* Python 3.6+
+
+No external libraries are required.
+
+---
+
+## 🚀 Usage
+
+### Run the Script
+
+```bash id="k3m8qn"
+python3 caesar_cipher.py
+```
+
+---
+
+### Interactive Menu
+
+* **Option 1 – Manual Input**
+  Enter text directly from the terminal
+
+* **Option 2 – File Input**
+  Provide the path to a `.txt` file
+
+* **Option 3 – Exit**
+  Safely terminate the program
+
+---
+
+## ⚙️ Configuration
+
+| Setting    | Description                                                 |
+| ---------- | ----------------------------------------------------------- |
+| **Key**    | Number of positions to shift                                |
+| **Rounds** | Number of times the shift is applied (optimized internally) |
+| **Mode**   | Choose between encryption or decryption                     |
+
+---
+
+## 📖 Learning Objectives
+
+This project demonstrates:
+
+* Algorithm optimization techniques
+* Time complexity reduction strategies
+* Efficient data structures (dictionary lookups)
+* File handling in Python
+* Basic cryptography concepts
+
+---
+
+## ⚠️ Security Notice
+
+This project is intended for educational purposes only.
+
+The Caesar Cipher is a classical encryption method and is **not secure** against modern cryptographic attacks.
+It should not be used to protect sensitive or real-world data.
+
+---
+
+## 📈 Future Improvements
+
+* Add support for custom alphabets
+* Implement frequency analysis tools (for cracking the cipher)
+* Add GUI interface
+* Extend to more advanced ciphers (Vigenère, AES demo)
+
+---
+
+## 📄 License
+
+This project is released under the MIT License.
