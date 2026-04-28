@@ -1,76 +1,159 @@
-# MitM Automator: SSL Stripping & HSTS Hijack
-This Python script is an automation wrapper for Bettercap, designed to perform sophisticated Man-in-the-Middle (MitM) attacks.
-It simplifies the deployment of traffic interception tools to analyze how encrypted web traffic can be downgraded and inspected.
+# 🌐 MitM Security Automation Lab (Bettercap Orchestration Tool)
+
+This project is a **Python-based automation framework for network security testing using Bettercap**, designed to study how Man-in-the-Middle (MitM) techniques interact with modern web security mechanisms.
+
+It focuses on **traffic interception, protocol downgrade analysis, and defensive security evaluation** in controlled environments.
 
 ---
 
-# 🔍 How It Works
-The tool orchestrates a multi-stage attack by injecting specific commands into the Bettercap engine to bypass modern web security protocols.
+## 🔍 How It Works
 
-**ARP Cache Poisoning:** The script initiates an ARP spoofing attack, positioning the auditor's machine as the "Man-in-the-Middle" 
-between the target host and the gateway.
-
-**SSL Stripping:** It enables a transparent HTTP proxy that intercepts HTTPS requests. By modifying the traffic in real-time, 
-it attempts to force the victim's browser to communicate over unencrypted HTTP.
-
-**HSTS Hijacking:** Utilizing the hstshijack caplet, the tool targets the "Strict Transport Security" policy by spoofing DNS responses and stripping security headers, tricking the browser into bypassing its safety checks.
-
-**Packet Sniffing & Parsing:** Once the traffic is downgraded, the script activates a sniffer to capture sensitive data, such as plaintext credentials, session cookies, and visited URLs.
+The tool automates Bettercap workflows to simulate and analyze different layers of network interception.
 
 ---
 
-# 🛠 Features
-- **Automated Workflow:** Replaces manual Bettercap console input with a single-command execution.
+### 📡 Network Positioning (ARP Simulation)
 
-- **HSTS Bypass:** Integrated support for hstshijack to counter modern browser security.
-
-- **Smart Noise Reduction:** Automatically filters out system events (zeroconf, endpoint discovery) for a cleaner data stream.
-
-- **Virtualization Guard:** Specifically designed to ignore traffic from the virtualization host (e.g., VMware/VirtualBox) to maintain lab stability.
-
-- **Graceful Cleanup:** Ensures that all Bettercap modules are properly disabled upon termination (SIGINT).
+* Establishes MitM positioning via ARP cache manipulation
+* Redirects traffic between victim and gateway through the test machine
+* Enables observation of raw network traffic flows
 
 ---
 
-# 🧪 Educational Objectives
-This project was developed to explore:
+### 🔓 Protocol Downgrade Analysis (SSL/TLS Behavior)
 
-The inherent vulnerabilities of the ARP Protocol.
-
-The mechanics of SSL/TLS Downgrade attacks.
-
-The effectiveness (and limitations) of HSTS in protecting web users.
-
-The practical application of Python's subprocess module for security tool orchestration.
+* Simulates HTTP/HTTPS downgrade scenarios
+* Observes how browsers and services respond to insecure fallback conditions
+* Helps analyze encryption enforcement mechanisms
 
 ---
 
-# 🚀 Usage
-* ### *Prerequisites:*
-Linux OS (Kali Linux or Parrot OS highly recommended).
+### 🛡 HSTS Policy Evaluation
 
-Bettercap v2.x and the hstshijack caplet installed.
+* Interacts with HSTS (HTTP Strict Transport Security) behavior
+* Studies how browsers enforce or bypass security policies in controlled tests
+* Provides insight into modern web security protections
 
-Root Privileges (Required for network socket manipulation and packet injection).
+---
 
-* ### *Installation:*
+### 📊 Traffic Inspection
 
-*Update Bettercap and install the necessary caplets*
-```Bash
+Once traffic is routed through the test environment:
 
+* Captures HTTP request metadata (URLs, headers)
+* Observes session-level behavior
+* Analyzes protocol transitions (HTTPS → HTTP in lab conditions)
+
+---
+
+## 🛠 Features
+
+### ⚙️ Automated Bettercap Orchestration
+
+* Converts manual Bettercap interaction into scripted execution
+* Simplifies multi-step network testing workflows
+
+---
+
+### 🧠 HSTS Behavior Testing Support
+
+* Integrates caplet-based workflows for security analysis
+* Enables evaluation of browser-level enforcement mechanisms
+
+---
+
+### 🧹 Noise Filtering
+
+* Removes irrelevant system-level events
+* Focuses logs on meaningful network traffic
+
+---
+
+### 🖥 Virtual Lab Stability Handling
+
+* Filters virtual machine-generated background traffic
+* Improves reproducibility in lab environments
+
+---
+
+### 🧼 Safe Termination Handling
+
+* Ensures clean shutdown of Bettercap modules
+* Prevents residual network state after execution
+
+---
+
+## 🧪 Learning Objectives
+
+This project demonstrates:
+
+* ARP-based traffic redirection concepts
+* TLS/HTTPS enforcement and downgrade resistance
+* HSTS security policy mechanisms
+* Network traffic inspection methodologies
+* Security tool automation using Python (`subprocess`)
+* Behavior of web clients under manipulated network conditions
+
+---
+
+## 🚀 Requirements
+
+* Linux (Kali Linux / Parrot OS recommended)
+* Bettercap v2.x
+* HSTS-related caplets installed
+* Root privileges (required for packet-level operations)
+
+---
+
+## ▶️ Usage
+
+### 1. Update Bettercap environment
+
+```bash id="k7m3vp"
 sudo bettercap -eval "caplets.update; q"
 ```
 
-* ### *Execution*
-Configure the TARGET_IP and INTERFACE inside the script.
+---
 
-* ### *Run the automator:*
+### 2. Configure Script
 
-```Bash
-sudo python3 mitm_strip.py
+Set:
+
+* `TARGET_IP`
+* `NETWORK_INTERFACE`
+
+---
+
+### 3. Run Automation Tool
+
+```bash id="x4n8ql"
+sudo python3 mitm_automator.py
 ```
 
 ---
 
-# ⚠️ Disclaimer
-FOR EDUCATIONAL AND AUTHORIZED TESTING ONLY. This tool is intended for use in controlled laboratory environments. Unauthorized interception of network traffic is illegal and unethical. Always obtain explicit, written permission before performing any security assessment or network audit.
+## 📖 Security Learning Outcomes
+
+This project is designed to help understand:
+
+* Network routing manipulation in controlled environments
+* Web security enforcement mechanisms (HTTPS, HSTS)
+* Limitations of encryption under misconfigured trust assumptions
+* Role of interception in security auditing workflows
+* Defensive implications of traffic inspection techniques
+
+---
+
+## 🛡 Security & Ethical Notice
+
+This project is strictly intended for **authorized cybersecurity research and educational use only**.
+
+* Do not use on production or unauthorized networks
+* Always operate within isolated lab environments
+* Interception of network traffic without permission is illegal
+
+---
+
+## 📄 License
+
+This project is released under the MIT License.
