@@ -59,6 +59,12 @@ This lab highlights important real-world risks:
 
 ---
 
+## 📸 Screenshots
+
+All screenshots related to APK analysis and rebuilding process are available in the `/screenshots` directory.
+
+---
+
 ## ⚠️ Ethical & Legal Disclaimer
 
 This project is intended strictly for **educational and defensive security research**.
