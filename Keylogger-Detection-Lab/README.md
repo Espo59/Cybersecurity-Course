@@ -108,10 +108,9 @@ Keylogger-Detection-Lab/
 ├── requirements.txt
 ├── README.md
 ├── docs/
-│   ├── analysis.md
-│   └── threat_model.md
-└── examples/
-    └── sample_output.txt
+    ├── analysis.md
+    └── threat_model.md
+
 ```
 
 ---
