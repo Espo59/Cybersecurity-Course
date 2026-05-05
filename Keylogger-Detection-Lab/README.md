@@ -107,7 +107,7 @@ Keylogger-Detection-Lab/
 ├── detector.py
 ├── requirements.txt
 ├── README.md
-├── docs/
+└── docs/
     ├── analysis.md
     └── threat_model.md
 
